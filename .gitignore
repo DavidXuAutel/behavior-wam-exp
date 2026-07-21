@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Data / weights (too large)
+data/
+datasets/
+checkpoints/
+*.pt
+*.ckpt
+*.safetensors
+*.hdf5
+
+# Reports may be committed selectively; ignore bulky videos
+reports/**/*.mp4
+reports/**/*.avi
+submission/metrics/
+runs/
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+
+# Secrets
+.env
+*.pem

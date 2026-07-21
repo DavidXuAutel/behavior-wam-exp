@@ -1,0 +1,20 @@
+# Pass criteria (v3.2 → BEHAVIOR)
+
+macro:
+  primary: q_score_mean
+  vs_flat_wam_executor: 0.05
+  vs_a1c_on_heldout_scenes: 0.03
+  bootstrap_ci_lower_bound_above_zero: true
+
+per_task:
+  max_qscore_drop_vs_a1c: 0.05
+
+engineering:
+  no_fastwam_repo_edits: true
+  observation_legal: true
+  submission_reproducible: true
+
+checkpoint_selection:
+  primary_metric: q_score_or_subgoal_proxy
+  secondary_metric: clean_success_rate
+  tie_breaker: lower_val_action_loss

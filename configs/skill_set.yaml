@@ -1,0 +1,37 @@
+# Placeholder — fill from BEHAVIOR demo annotations (31 unique skills).
+# Source: https://behavior.stanford.edu/challenge/dataset.html
+
+skills:
+  - attach
+  - chop
+  - close door
+  - close drawer
+  - close lid
+  - hand over
+  - hang
+  - hold
+  - ignite
+  - insert
+  - move to
+  - open door
+  - open drawer
+  - open lid
+  - pick up from
+  - place in
+  - place in next to
+  - place on
+  - place on next to
+  - place under
+  - pour
+  - press
+  - push to
+  - release
+  - spray
+  - sweep surface
+  - tip over
+  - turn off switch
+  - turn on switch
+  - turn to
+  - wipe hard
+
+notes: "Task 3 will bind these to annotation IDs and episode slices."

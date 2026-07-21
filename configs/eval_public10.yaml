@@ -1,0 +1,12 @@
+# Public validation subset for early weeks (not full 1000 rollouts).
+# Fill concrete task names after browsing Demo Gallery / dataset meta.
+
+subset_name: public10_smoke
+num_tasks: 5
+instances_per_task: 10
+rollouts_per_instance: 1
+observation:
+  allow: [rgb, depth, proprioception]
+  deny: [segmentation, object_pose, global_pose, privileged_state]
+robot_config: omnigibson/eval/r1pro.yaml  # path relative to OmniGibson install
+notes: "Expand toward 10 tasks after Hier-v0 gate passes."

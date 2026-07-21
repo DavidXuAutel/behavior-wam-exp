@@ -1,0 +1,28 @@
+# Data compatibility registry (Apex-WAM-Mini v3.2 style)
+# verified sources only may provide L_action.
+
+target:
+  action_space: r1pro_omnigibson  # exact dims filled after robot config inspect
+  embodiment: r1pro
+  coord_frame: omnigibson_robot
+  action_dim: null  # set in Task 2/3 after loading r1pro.yaml
+
+compatible_sources:
+  - id: behavior_2026_challenge_demos
+    action_space: r1pro_omnigibson
+    embodiment: r1pro
+    coord_frame: omnigibson_robot
+    action_supervision: true
+    verified: false  # flip true after Task 3 sample checks
+    notes: "Official LeRobot V3 demos; verify action_dim + gripper convention"
+
+video_only_sources: []
+
+rules:
+  action_supervision: lookup(source_id) in compatible_sources AND verified == true
+  video_supervision: all sources except explicitly blocked
+
+verification_criteria:
+  sample_size: 100
+  pass_rule: all_checks_pass
+  artifact: reports/registry_verification/{source_id}.json
