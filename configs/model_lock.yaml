@@ -1,0 +1,34 @@
+# model_lock.yaml — freeze before Stage A0
+
+# Fill during Week 0 smoke; do not start A0 until status: frozen
+
+status: draft  # -> frozen
+
+wan:
+  dit_checkpoint: null          # e.g. Wan2.2-TI2V-5B id / local path
+  vae_checkpoint: null
+  text_encoder: null            # UMT5 / T5-XXL matching stack
+
+sensors:
+  camera_names: []              # from r1pro.yaml
+  rgb_resolution: null          # 256 or 384
+  depth_required: true
+  depth_fusion: null            # separate_stem | channel_concat
+
+temporal:
+  history_frames: 1             # 1..4
+  action_horizon: null
+  execute_steps_per_chunk: null
+  denoise_steps_deploy: 5
+
+control:
+  target_hz: null               # aim 3..5+
+  action_dim: null              # from r1pro controller_config
+  robot_config: r1pro.yaml
+
+mot:
+  video_expert: wan22_lora
+  action_expert: flow_matching_dit
+  shared_attention: true
+  perceiver_latents: 64
+  deploy_mode: fast             # no future-video denoising

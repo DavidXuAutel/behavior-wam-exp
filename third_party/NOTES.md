@@ -1,25 +1,18 @@
-# Third-party dependencies (allowed)
-
-This experiment owns its WAM implementation. External assets are limited to:
+# Third-party assets
 
 ## Allowed
 
-- **Wan2.2** generic pretrained weights (Hugging Face / DiffSynth) as backbone init
-- **OmniGibson** + BEHAVIOR-1K assets for sim eval
+- **Wan2.2** generic pretrained DiT + VAE (+ matching text encoder) as backbone init
+- **OmniGibson** + BEHAVIOR-1K for simulation eval
 - Official **2026-challenge-demos** (LeRobot V3)
-
-## Forbidden
-
-- FastWAM repository code, configs, checkpoints, scripts
-- τ₀-WM / TauPolicy as a dependency
-- Any “read-only mount” of FastWAM into training or inference
+- Challenge baselines **π0.5 / GR00T N1.7** only as external evaluation references on the same subset
 
 ## Suggested env
 
 ```bash
-export WAN22_MODEL_DIR="$HOME/checkpoints/wan22"   # or HF cache path
-export OMNIGIBSON_ROOT="$HOME/Projects/OmniGibson" # adjust
+export WAN22_MODEL_DIR="$HOME/checkpoints/wan22"
+export OMNIGIBSON_ROOT="$HOME/Projects/OmniGibson"
 export BEHAVIOR_DEMOS="$HOME/data/2026-challenge-demos"
 ```
 
-Document exact download commands in Task 2 notes when installed.
+Exact download commands and the frozen `configs/model_lock.yaml` values are filled in Week 0.

@@ -1,4 +1,4 @@
-# Pass criteria (v3.2 → BEHAVIOR)
+# Pass criteria (BEHAVIOR × Independent MoT-WAM)
 
 macro:
   primary: q_score_mean
@@ -10,11 +10,20 @@ per_task:
   max_qscore_drop_vs_a1c: 0.05
 
 engineering:
-  no_fastwam_repo_edits: true
   observation_legal: true
+  no_bddl_or_qscore_as_policy_input: true
+  depth_required_in_obs_pack: true
+  model_lock_frozen_before_a0: true
   submission_reproducible: true
 
+baselines:
+  report_pi05_or_groot_on_same_subset: true
+
 checkpoint_selection:
-  primary_metric: q_score_or_subgoal_proxy
+  primary_metric: q_score_or_legal_subgoal_proxy
   secondary_metric: clean_success_rate
   tie_breaker: lower_val_action_loss
+
+power_check:
+  target_mde_macro: 0.03
+  require_documented_before_gate_claim: true

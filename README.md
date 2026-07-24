@@ -1,13 +1,13 @@
 # behavior-wam-exp
 
-Independent World-Action Model for **BEHAVIOR Challenge 2026**.
+Independent MoT World-Action Model for **BEHAVIOR Challenge 2026**.
 
-**Goal:** Skill Planner + independent WAM skill executor, legal observations only, optimize **Q-score**. Validate world co-training with A1c vs B. Backbone init: generic **Wan2.2** (not FastWAM).
+**Goal:** Skill Planner + MoT-WAM skill executor (Wan2.2 init), legal RGB+Depth+proprio only, optimize **Q-score**. Validate world co-training with A1c vs B. Structure follows leading WAM designs (dual-stream MoT, joint video–action training, FAST deploy).
 
 ## Hard boundaries
 
-- **No FastWAM / τ₀-WM**: no code, configs, checkpoints, or utilities from those repos.
-- Evaluation inputs: **RGB + Depth + proprioception** only.
+- Evaluation inputs: **RGB + Depth + proprioception** only (Depth required in the obs pack).
+- No BDDL predicates or Q-score as online policy inputs.
 - Primary metric: mean **Q-score**. Full-task success is secondary.
 - Submissions must be reproducible; no cherry-picking rollouts.
 
@@ -22,25 +22,25 @@ Independent World-Action Model for **BEHAVIOR Challenge 2026**.
 
 ```text
 behavior-wam-exp/
-├── configs/           # stages, skills, data compatibility, eval subsets
+├── configs/           # model_lock, stages, skills, registry, eval
 ├── docs/              # pass criteria, specs, plans
-├── src/wam/           # independent WAM implementation
-├── scripts/           # smoke / data / train / eval / pack
-├── wrappers/          # OmniGibson eval + hierarchical policy
+├── src/wam/           # MoT video/action experts
+├── scripts/
+├── wrappers/          # OmniGibson + hierarchical policy + filter
 ├── reports/
 ├── tests/
-└── third_party/       # Wan2.2 / OmniGibson install notes only
+└── third_party/       # Wan2.2 / OmniGibson install notes
 ```
 
 ## Design
 
-See `docs/superpowers/specs/2026-07-21-independent-wam-behavior-design.md`.
+See `docs/superpowers/specs/2026-07-21-independent-wam-behavior-design.md` (rev2).
 
 ## Status
 
-- [x] Scaffold + independent-WAM design spec
-- [ ] Task 2: OmniGibson eval smoke
-- [ ] Task 3: skill episode slicing
+- [x] Scaffold + independent MoT-WAM design spec (rev2)
+- [ ] Task 2: OmniGibson eval smoke + `configs/model_lock.yaml`
+- [ ] Task 3: skill episode slicing (nav vs manip)
 - [ ] Task 4: Hier-v0 vs Flat
 - [ ] Task 5: Depth + candidate_filter
 - [ ] Task 6: Stage A0 executor

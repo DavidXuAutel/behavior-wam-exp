@@ -1,9 +1,6 @@
-# SUPERSEDED
+# SUPERSEDED by design rev2
 
-This plan assumed FastWAM as a read-only dependency.
-
-**Canonical design (approved architecture):**  
+Canonical design:
 `docs/superpowers/specs/2026-07-21-independent-wam-behavior-design.md`
 
-A replacement implementation plan will be written after the design spec is approved.
-Do not execute the FastWAM-dependent tasks in this file.
+A new implementation plan matching rev2 (MoT-WAM, legal completion, nav/manip, model_lock) will replace this file.
