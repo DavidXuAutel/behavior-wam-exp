@@ -32,17 +32,15 @@ behavior-wam-exp/
 └── third_party/       # Wan2.2 / OmniGibson install notes
 ```
 
-## Design
+## Design & plan
 
-See `docs/superpowers/specs/2026-07-21-independent-wam-behavior-design.md` (rev2).
+- Spec (rev2): `docs/superpowers/specs/2026-07-21-independent-wam-behavior-design.md`
+- **Landable plan:** `docs/superpowers/plans/2026-07-24-independent-mot-wam-landable.md`
 
 ## Status
 
-- [x] Scaffold + independent MoT-WAM design spec (rev2)
-- [ ] Task 2: OmniGibson eval smoke + `configs/model_lock.yaml`
-- [ ] Task 3: skill episode slicing (nav vs manip)
-- [ ] Task 4: Hier-v0 vs Flat
-- [ ] Task 5: Depth + candidate_filter
-- [ ] Task 6: Stage A0 executor
-- [ ] Task 7: A1c vs B
-- [ ] Task 8: Stage C + submission pack
+- [x] Spec rev2 + landable implementation plan
+- [ ] W0: model_lock freeze + OmniGibson 1×1 smoke
+- [ ] W1: skill slices + planner v0 + filter/router
+- [ ] W2: MoT A0 + Hier vs Flat gate
+- [ ] W3: A1c vs B + Stage C submission pack
