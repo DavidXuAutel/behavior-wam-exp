@@ -7,12 +7,16 @@
 - Official **2026-challenge-demos** (LeRobot V3)
 - Challenge baselines **π0.5 / GR00T N1.7** only as external evaluation references on the same subset
 
-## Suggested env
+## Remote (10.239.121.21) — Week 0
 
 ```bash
-export WAN22_MODEL_DIR="$HOME/checkpoints/wan22"
-export OMNIGIBSON_ROOT="$HOME/Projects/OmniGibson"
-export BEHAVIOR_DEMOS="$HOME/data/2026-challenge-demos"
+export WAN22_MODEL_DIR=/home/a25689/behavior-wam-exp/checkpoints/wan22
+export OMNIGIBSON_ROOT=/home/a25689/BEHAVIOR-2026/code/BEHAVIOR-1K/OmniGibson
+export BEHAVIOR_DEMOS=/home/a25689/BEHAVIOR-2026/datasets/2026-challenge-demos
 ```
 
-Exact download commands and the frozen `configs/model_lock.yaml` values are filled in Week 0.
+Wan2.2 TI2V-5B weights are present under `$WAN22_MODEL_DIR` (symlink to an existing
+local weight tree). This project does **not** import FastWAM code; only the
+generic Wan2.2 checkpoint files are reused.
+
+Frozen values live in `configs/model_lock.yaml` (`status: frozen`).

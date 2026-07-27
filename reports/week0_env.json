@@ -1,0 +1,67 @@
+{
+  "timestamp": "2026-07-27T07:19:02.563804Z",
+  "timestamp_updated": "2026-07-27T09:05:00+00:00",
+  "host": "jpt-a25689-260727-fba7a-default0-0",
+  "user": "a25689",
+  "gpus": [
+    {
+      "index": "0",
+      "name": "NVIDIA H100 80GB HBM3",
+      "memory_total": "81559 MiB",
+      "memory_free": "81110 MiB"
+    },
+    {
+      "index": "1",
+      "name": "NVIDIA H100 80GB HBM3",
+      "memory_total": "81559 MiB",
+      "memory_free": "81110 MiB"
+    }
+  ],
+  "n_gpus": 2,
+  "disk": {
+    "home": "10.43.167.216:6789,10.43.62.57:6789,10.43.44.169:6789:/volumes/csi/csi-vol-7f5a9ed7-2ff4-4c9e-8ed0-8db6e35350d0/59d5dbfc-39ee-4d32-a04f-7abf615d610d  157T   71T   87T  45% /home/a25689",
+    "root": "overlay         537G  330G  208G  62% /"
+  },
+  "behavior_root": "/home/a25689/BEHAVIOR-2026",
+  "demos_path": "/home/a25689/BEHAVIOR-2026/datasets/2026-challenge-demos",
+  "demos_verified": {
+    "total_episodes": 20000,
+    "total_tasks": 100,
+    "total_frames": 210916774,
+    "fps": 30,
+    "robot_type": "R1Pro",
+    "codebase_version": "v3.0",
+    "videos_bytes": "3180494256005",
+    "data_bytes": "82317362696",
+    "annotation_tasks": 100
+  },
+  "action_dim_from_docs": 23,
+  "torch_probe": {
+    "kairos": "2.6.0+cu126 12.6 2",
+    "mot-wam": "2.6.0+cu126 12.6 2"
+  },
+  "model_lock": {
+    "status": "frozen",
+    "path": "/home/a25689/behavior-wam-exp/configs/model_lock.yaml",
+    "rgb_resolution": 256,
+    "action_dim": 23
+  },
+  "wan22": {
+    "path": "/home/a25689/behavior-wam-exp/checkpoints/wan22",
+    "verified": true,
+    "size": "~32G"
+  },
+  "data_audit": {
+    "status": "pass",
+    "subset_tasks": 8,
+    "action_files_spotchecked": 100,
+    "action_dim": 23
+  },
+  "status": "week0_ready",
+  "notes": [
+    "2x H100 80GB — MVP/Base-lite tier; A1c/B will be slower than 8-GPU estimate",
+    "Official demos present (~3TB); raw HDF5 not found under datasets/",
+    "Create dedicated micromamba env mot-wam; do not overwrite kairos",
+    "model_lock frozen; D0 audit pass on 8 tasks + 100 action parquet spotchecks"
+  ]
+}

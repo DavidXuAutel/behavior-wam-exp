@@ -1,34 +1,64 @@
 # model_lock.yaml — freeze before Stage A0
+# Machine: 10.239.121.21 (2x H100 80GB)
+# Frozen after Wan2.2 path verification + camera/action dims from demos/r1pro_behavior.
 
-# Fill during Week 0 smoke; do not start A0 until status: frozen
-
-status: draft  # -> frozen
+status: frozen
 
 wan:
-  dit_checkpoint: null          # e.g. Wan2.2-TI2V-5B id / local path
-  vae_checkpoint: null
-  text_encoder: null            # UMT5 / T5-XXL matching stack
+  dit_checkpoint: /home/a25689/behavior-wam-exp/checkpoints/wan22
+  vae_checkpoint: /home/a25689/behavior-wam-exp/checkpoints/wan22/Wan2.2_VAE.pth
+  text_encoder: /home/a25689/behavior-wam-exp/checkpoints/wan22/models_t5_umt5-xxl-enc-bf16.pth
+  tokenizer: /home/a25689/behavior-wam-exp/checkpoints/wan22/google/umt5-xxl
+  source_note: "symlink to FastWAM scoutxwam wan22_5b; independent MoT-WAM does not import FastWAM code"
 
 sensors:
-  camera_names: []              # from r1pro.yaml
-  rgb_resolution: null          # 256 or 384
+  # Official demos expose all three; A0 MVP uses head (+ optional left wrist).
+  camera_names:
+    - zed_link_camera_0
+    - left_realsense_link_camera_0
+  camera_names_available:
+    - zed_link_camera_0
+    - left_realsense_link_camera_0
+    - right_realsense_link_camera_0
+  rgb_resolution: 256
   depth_required: true
-  depth_fusion: null            # separate_stem | channel_concat
+  depth_fusion: separate_stem
+  depth_keys:
+    - observation.depth_linear.zed_link_camera_0
+    - observation.depth_linear.left_realsense_link_camera_0
 
 temporal:
-  history_frames: 1             # 1..4
-  action_horizon: null
-  execute_steps_per_chunk: null
+  history_frames: 1
+  action_horizon: 16
+  execute_steps_per_chunk: 4
   denoise_steps_deploy: 5
 
 control:
-  target_hz: null               # aim 3..5+
-  action_dim: null              # from r1pro controller_config
-  robot_config: r1pro.yaml
+  target_hz: 3
+  action_dim: 23
+  robot_config: r1pro_behavior.yaml
+  robot_config_path: /home/a25689/BEHAVIOR-2026/code/BEHAVIOR-1K/OmniGibson/omnigibson/configs/r1pro_behavior.yaml
 
 mot:
   video_expert: wan22_lora
   action_expert: flow_matching_dit
-  shared_attention: true
+  shared_attention: false
+  coupling: perceiver_cross_attn
   perceiver_latents: 64
-  deploy_mode: fast             # no future-video denoising
+  deploy_mode: fast
+
+paths:
+  behavior_root: /home/a25689/BEHAVIOR-2026
+  demos: /home/a25689/BEHAVIOR-2026/datasets/2026-challenge-demos
+  omnigibson: /home/a25689/BEHAVIOR-2026/code/BEHAVIOR-1K/OmniGibson
+  checkpoints: /home/a25689/behavior-wam-exp/checkpoints
+  reports: /home/a25689/behavior-wam-exp/reports
+
+freeze:
+  frozen_at: "2026-07-27T16:30:00+08:00"
+  frozen_by: week0-task0
+  vram_probe: "torch CUDA probe: 2x H100 80GB; 256 locked for MVP; full Wan forward remains Task 6 gate"
+  notes:
+    - "Wan2.2 TI2V-5B DiT/VAE/UMT5 verified complete (~32G)"
+    - "action_dim=23 from demos meta/info.json features.action.shape"
+    - "rgb_resolution=256 chosen for 2xH100 MVP; revisit 384 after MoT smoke"

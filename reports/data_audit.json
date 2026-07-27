@@ -1,0 +1,53 @@
+{
+  "status": "pass",
+  "demos": "/home/a25689/BEHAVIOR-2026/datasets/2026-challenge-demos",
+  "subset_tasks": [
+    "task-0005",
+    "task-0033",
+    "task-0049",
+    "task-0051",
+    "task-0053",
+    "task-0062",
+    "task-0065",
+    "task-0097"
+  ],
+  "cameras": [
+    "left_realsense_link_camera_0",
+    "right_realsense_link_camera_0",
+    "zed_link_camera_0"
+  ],
+  "checks": {
+    "info_present": true,
+    "total_episodes": 20000,
+    "total_tasks": 100,
+    "robot_type_r1pro": true,
+    "action_shape_23": true,
+    "has_rgb": true,
+    "has_depth": true,
+    "has_state": true,
+    "subset_annotations_found": true
+  },
+  "annotation_ok": [
+    "/home/a25689/BEHAVIOR-2026/datasets/2026-challenge-demos/annotations/task-0005",
+    "/home/a25689/BEHAVIOR-2026/datasets/2026-challenge-demos/annotations/task-0033",
+    "/home/a25689/BEHAVIOR-2026/datasets/2026-challenge-demos/annotations/task-0049",
+    "/home/a25689/BEHAVIOR-2026/datasets/2026-challenge-demos/annotations/task-0051",
+    "/home/a25689/BEHAVIOR-2026/datasets/2026-challenge-demos/annotations/task-0053",
+    "/home/a25689/BEHAVIOR-2026/datasets/2026-challenge-demos/annotations/task-0062",
+    "/home/a25689/BEHAVIOR-2026/datasets/2026-challenge-demos/annotations/task-0065",
+    "/home/a25689/BEHAVIOR-2026/datasets/2026-challenge-demos/annotations/task-0097"
+  ],
+  "annotation_missing": [],
+  "action_spotcheck": {
+    "status": "pass",
+    "n_files": 100,
+    "dims": {
+      "23": 100
+    },
+    "errors": []
+  },
+  "notes": [
+    "Legal obs audit is schema-level (RGB+Depth+state present).",
+    "Episode-level Q/BDDL never fed to policy; this audit does not load privileged labels into model inputs."
+  ]
+}
