@@ -35,7 +35,9 @@ behavior-wam-exp/
 ## Design & plan
 
 - Spec (rev2): `docs/superpowers/specs/2026-07-21-independent-wam-behavior-design.md`
-- **Landable plan:** `docs/superpowers/plans/2026-07-24-independent-mot-wam-landable.md`
+- **Train & eval scheme:** `docs/superpowers/specs/2026-07-27-train-eval-scheme.md`
+- **Landable eng. plan:** `docs/superpowers/plans/2026-07-24-independent-mot-wam-landable.md`
+- Merged export: `docs/COMPLETE_SCHEME.md`
 
 ## Status
 
