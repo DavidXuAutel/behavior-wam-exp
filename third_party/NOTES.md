@@ -7,7 +7,9 @@
 - Official **2026-challenge-demos** (LeRobot V3)
 - Challenge baselines **π0.5 / GR00T N1.7** only as external evaluation references on the same subset
 
-## Remote (10.239.121.21) — Week 0
+## Remote (10.239.121.22:31103) — Week 0
+
+Previous node: `10.239.121.21:31126` (same Ceph home; E0 blocked by GPU occupancy).
 
 ```bash
 export WAN22_MODEL_DIR=/home/a25689/behavior-wam-exp/checkpoints/wan22

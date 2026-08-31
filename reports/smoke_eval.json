@@ -1,12 +1,33 @@
 {
-  "status": "blocked",
-  "reason": "OmniGibson Python package not importable in mot-wam or kairos on 10.239.121.21; Isaac/OG runtime install still required before 1x1 eval",
+  "status": "failed_rtx_hang",
+  "exit_code": null,
+  "exit_code_note": "Vulkan ICD fixed; Isaac/Kit hangs in SimulationApp._prepare_ui first app.update after app ready; never returns to Python",
+  "task": "assembling_gift_baskets",
+  "instance_indices": [
+    0
+  ],
+  "mode": "public_test",
+  "policy": "local",
+  "max_steps": 30,
   "observation_legal": true,
   "independent_wam": true,
-  "checked_at": "2026-07-27T09:10:00Z",
-  "paths": {
-    "omnigibson_source": "/home/a25689/BEHAVIOR-2026/code/BEHAVIOR-1K/OmniGibson",
-    "robot_config": "/home/a25689/BEHAVIOR-2026/code/BEHAVIOR-1K/OmniGibson/omnigibson/configs/r1pro_behavior.yaml"
-  },
-  "next": "Install/activate official BEHAVIOR-1K OmniGibson + Isaac runtime, then wire scripts/smoke_omnigibson_eval.sh"
+  "attempt": "e0_on_22_after_libegl_vulkan_fix",
+  "finished_at": "2026-07-28T03:04:00Z",
+  "host": "10.239.121.22",
+  "hostname": "jpt-a25689-260728-e8024-default0-0",
+  "result_jsons": [],
+  "log": "/home/a25689/behavior-wam-exp/reports/e0_smoke_vkfix_22.log",
+  "imports_ok": true,
+  "scene_imported": false,
+  "vulkan_status": "fixed",
+  "vulkan_fix": "sudo apt-get install -y libglvnd0 libegl1 libgles2 libopengl0 libglx0 (missing libEGL.so.1 caused nvidia ICD negotiate to return VK_ERROR_INITIALIZATION_FAILED / ERROR_INCOMPATIBLE_DRIVER)",
+  "vulkaninfo": "OK - 2x NVIDIA H100 80GB HBM3 (driver 560.35.03, api 1.3.280) with VK_ICD_FILENAMES=/etc/vulkan/icd.d/nvidia_icd.json",
+  "root_cause": "After Vulkan works, Kit initializes Graphics API Vulkan then hangs forever in first RTX frame / rtx.materialdb init (_prepare_ui). Optional Aftermath GPU crash dump on first attempt; hang persists with aftermath disabled. Minimal isaacsim SimulationApp headless also hangs - not OmniGibson-specific.",
+  "gpu_note": "2xH100 idle; CUDA torch OK; PhysX can select CUDA device 0 after Vulkan fix",
+  "admin_ask": [
+    "Bake GLVND packages into node image: libegl1 libglvnd0 libopengl0 libgles2 libglx0 (and keep libvulkan1 vulkan-tools)",
+    "Investigate Isaac Sim 5.1 / Kit 107.3 RTX hang on this H100 container (GPU crash dump + materialdb hang after app ready). May need newer NVIDIA driver matching Isaac recommended stack, fuller graphics device nodes in container runtime, or a different GPU/node SKU validated for Isaac headless.",
+    "Optional: provide a node where Isaac Sim 5.1 headless SimulationApp completes beyond app ready"
+  ],
+  "next": "Do not re-run E0 until minimal isaacsim SimulationApp returns APP_CREATED. Keep VK_ICD_FILENAMES=/etc/vulkan/icd.d/nvidia_icd.json and OMNIGIBSON_HEADLESS=1."
 }

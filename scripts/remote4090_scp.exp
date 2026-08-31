@@ -1,0 +1,17 @@
+#!/usr/bin/env expect
+# Usage: remote4090_scp.exp local remote
+set timeout 300
+if {$argc < 2} { puts "usage: $argv0 local remote"; exit 2 }
+set local [lindex $argv 0]
+set remote [lindex $argv 1]
+spawn scp -o StrictHostKeyChecking=no -o PreferredAuthentications=password -o PubkeyAuthentication=no $local a26125@10.229.20.110:$remote
+expect {
+  -re "(?i)are you sure you want to continue connecting" { send "yes\r"; exp_continue }
+  -re "password:" { send "Autel123\r" }
+}
+expect {
+  eof {}
+  timeout { puts "TIMEOUT"; exit 124 }
+}
+catch wait result
+exit [lindex $result 3]

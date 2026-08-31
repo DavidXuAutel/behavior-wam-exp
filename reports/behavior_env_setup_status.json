@@ -1,0 +1,41 @@
+{
+  "status": "success",
+  "message": "behavior conda env recreated on .22; imports OK after apt libgl1/libglu1; E0 blocked on broken Vulkan ICD",
+  "updated_at": "2026-07-28T01:50:00Z",
+  "assets_version": "3.9.0",
+  "datasets_root": "/home/a25689/BEHAVIOR-2026/code/BEHAVIOR-1K/datasets",
+  "conda_env": "/opt/conda/envs/behavior",
+  "conda_env_size": "20G",
+  "setup_log": "/home/a25689/behavior-wam-exp/reports/behavior_env_setup_22.log",
+  "setup_pid": 898,
+  "setup_exit": 0,
+  "setup_flags": "--new-env behavior --omnigibson --bddl --joylo --eval --accept-conda-tos --accept-nvidia-eula --accept-dataset-tos (no --dataset; no --confirm-no-conda)",
+  "assets": {
+    "behavior_1k": "/home/a25689/BEHAVIOR-2026/code/BEHAVIOR-1K/datasets/behavior-1k-assets",
+    "behavior_1k_size": "33G",
+    "robot": "/home/a25689/BEHAVIOR-2026/code/BEHAVIOR-1K/datasets/omnigibson-robot-assets",
+    "robot_version": "3.8.2",
+    "task_instances": "/home/a25689/BEHAVIOR-2026/code/BEHAVIOR-1K/datasets/2026-challenge-task-instances",
+    "version": "3.9.0"
+  },
+  "imports_ok": true,
+  "libgl_fix": "sudo apt-get install -y libgl1 libglu1-mesa",
+  "untouched": [
+    "kairos",
+    "mot-wam"
+  ],
+  "connectivity": {
+    "host": "10.239.121.22",
+    "port": 31103,
+    "verdict": "ssh_ok",
+    "hostname": "jpt-a25689-260728-e8024-default0-0",
+    "probed_at": "2026-07-28T01:50:00Z"
+  },
+  "e0": {
+    "status": "failed_gpu_init",
+    "log": "/home/a25689/behavior-wam-exp/reports/e0_smoke_retry_22.log",
+    "scene_imported": true,
+    "reason": "Vulkan ERROR_INCOMPATIBLE_DRIVER on idle GPUs"
+  },
+  "conda_env_on_active_node": true
+}

@@ -1,5 +1,5 @@
 # model_lock.yaml — freeze before Stage A0
-# Machine: 10.239.121.21 (2x H100 80GB)
+# Machine: 10.239.121.22:31103 (2x H100 80GB); previous 10.239.121.21:31126 same Ceph home
 # Frozen after Wan2.2 path verification + camera/action dims from demos/r1pro_behavior.
 
 status: frozen

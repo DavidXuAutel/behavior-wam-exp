@@ -1,0 +1,16 @@
+#!/usr/bin/env expect
+# Usage: remote4090_ssh.exp 'remote command'
+set timeout 300
+if {$argc < 1} { puts "usage: $argv0 remote-cmd"; exit 2 }
+set cmd [lindex $argv 0]
+spawn ssh -o StrictHostKeyChecking=no -o PreferredAuthentications=password -o PubkeyAuthentication=no a26125@10.229.20.110 $cmd
+expect {
+  -re "(?i)are you sure you want to continue connecting" { send "yes\r"; exp_continue }
+  -re "password:" { send "Autel123\r" }
+}
+expect {
+  eof {}
+  timeout { puts "TIMEOUT"; exit 124 }
+}
+catch wait result
+exit [lindex $result 3]
